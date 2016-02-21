@@ -63,7 +63,7 @@ public struct IP {
         try self.init(address: iplocal(networkInterface, Int32(port), mode.code))
     }
 
-    public init(remoteAddress: String, port: Int, mode: IPMode = .IPV4Prefered, deadline: Deadline = noDeadline) throws {
+    public init(remoteAddress: String, port: Int, mode: IPMode = .IPV4Prefered, deadline: Deadline = never) throws {
         try IP.assertValidPort(port)
         try self.init(address: ipremote(remoteAddress, Int32(port), mode.code, deadline))
     }

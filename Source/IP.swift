@@ -77,8 +77,8 @@ public struct IP {
 
 extension IP: CustomStringConvertible {
     public var description: String {
-        var buffer = [Int8](count: 46, repeatedValue: 0)
+        var buffer = [Int8](repeating: 0, count: 46)
         ipaddrstr(address, &buffer)
-        return String.fromCString(buffer)!
+        return String(cString: buffer)
     }
 }

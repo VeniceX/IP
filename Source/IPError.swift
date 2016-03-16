@@ -24,7 +24,7 @@
 
 @_exported import System
 
-public enum IPError: ErrorType {
+public enum IPError: ErrorProtocol {
     case InvalidPort(description: String)
     case Unknown(description: String)
 
@@ -34,7 +34,7 @@ public enum IPError: ErrorType {
     }
 
     static var lastErrorDescription: String {
-        return String.fromCString(strerror(errno))!
+        return String(cString: strerror(errno))
     }
 
     static func assertNoError() throws {

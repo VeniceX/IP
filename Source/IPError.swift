@@ -22,7 +22,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-@_exported import System
+@_exported import OS
 
 public enum IPError: ErrorProtocol {
     case invalidPort(description: String)

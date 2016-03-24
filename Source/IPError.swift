@@ -25,12 +25,12 @@
 @_exported import System
 
 public enum IPError: ErrorProtocol {
-    case InvalidPort(description: String)
-    case Unknown(description: String)
+    case invalidPort(description: String)
+    case unknown(description: String)
 
     static var lastError: IPError {
         // TODO: Switch on errno
-        return .Unknown(description: lastErrorDescription)
+        return .unknown(description: lastErrorDescription)
     }
 
     static var lastErrorDescription: String {

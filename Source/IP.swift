@@ -26,17 +26,17 @@ import CLibvenice
 @_exported import Venice
 
 public enum IPMode {
-    case IPV4
-    case IPV6
-    case IPV4Prefered
-    case IPV6Prefered
+    case ipV4
+    case ipV6
+    case ipV4Prefered
+    case ipV6Prefered
 
     var code: Int32 {
         switch self {
-        case .IPV4: return 1
-        case .IPV6: return 2
-        case .IPV4Prefered: return 3
-        case .IPV6Prefered: return 4
+        case .ipV4: return 1
+        case .ipV6: return 2
+        case .ipV4Prefered: return 3
+        case .ipV6Prefered: return 4
         }
     }
 }
@@ -49,7 +49,7 @@ public struct IP {
         try IPError.assertNoError()
     }
 
-    public init(localAddress: String? = nil, port: Int = 0, mode: IPMode = .IPV4Prefered) throws {
+    public init(localAddress: String? = nil, port: Int = 0, mode: IPMode = .ipV4Prefered) throws {
         try IP.assertValidPort(port)
         if let localAddress = localAddress {
             try self.init(address: iplocal(localAddress, Int32(port), mode.code))
@@ -58,19 +58,19 @@ public struct IP {
         }
     }
 
-    public init(networkInterface: String, port: Int = 0, mode: IPMode = .IPV4Prefered) throws {
+    public init(networkInterface: String, port: Int = 0, mode: IPMode = .ipV4Prefered) throws {
         try IP.assertValidPort(port)
         try self.init(address: iplocal(networkInterface, Int32(port), mode.code))
     }
 
-    public init(remoteAddress: String, port: Int, mode: IPMode = .IPV4Prefered, deadline: Deadline = never) throws {
+    public init(remoteAddress: String, port: Int, mode: IPMode = .ipV4Prefered, deadline: Deadline = never) throws {
         try IP.assertValidPort(port)
         try self.init(address: ipremote(remoteAddress, Int32(port), mode.code, deadline))
     }
 
     private static func assertValidPort(port: Int) throws {
         if port < 0 || port > 0xffff {
-            throw IPError.InvalidPort(description: "Port number should be between 0 and 0xffff")
+            throw IPError.invalidPort(description: "Port number should be between 0 and 0xffff")
         }
     }
 }

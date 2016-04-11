@@ -63,9 +63,9 @@ public struct IP {
         try self.init(address: iplocal(networkInterface, Int32(port), mode.code))
     }
 
-    public init(remoteAddress: String, port: Int, mode: IPMode = .ipV4Prefered, deadline: Deadline = never) throws {
+    public init(remoteAddress: String, port: Int, mode: IPMode = .ipV4Prefered, deadline: Double = .never) throws {
         try IP.assertValidPort(port)
-        try self.init(address: ipremote(remoteAddress, Int32(port), mode.code, deadline))
+        try self.init(address: ipremote(remoteAddress, Int32(port), mode.code, deadline.int64milliseconds))
     }
 
     private static func assertValidPort(port: Int) throws {

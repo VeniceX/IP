@@ -50,7 +50,7 @@ public struct IP {
     }
 
     public init(localAddress: String? = nil, port: Int = 0, mode: IPMode = .ipV4Prefered) throws {
-        try IP.assertValidPort(port)
+        try IP.assertValid(port)
         if let localAddress = localAddress {
             try self.init(address: iplocal(localAddress, Int32(port), mode.code))
         } else {
@@ -59,16 +59,16 @@ public struct IP {
     }
 
     public init(networkInterface: String, port: Int = 0, mode: IPMode = .ipV4Prefered) throws {
-        try IP.assertValidPort(port)
+        try IP.assertValid(port)
         try self.init(address: iplocal(networkInterface, Int32(port), mode.code))
     }
 
     public init(remoteAddress: String, port: Int, mode: IPMode = .ipV4Prefered, deadline: Double = .never) throws {
-        try IP.assertValidPort(port)
+        try IP.assertValid(port)
         try self.init(address: ipremote(remoteAddress, Int32(port), mode.code, deadline.int64milliseconds))
     }
 
-    private static func assertValidPort(port: Int) throws {
+    private static func assertValid(_ port: Int) throws {
         if port < 0 || port > 0xffff {
             throw IPError.invalidPort(description: "Port number should be between 0 and 0xffff")
         }

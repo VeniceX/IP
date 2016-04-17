@@ -28,17 +28,13 @@ import CLibvenice
 
 public enum IPError: ErrorProtocol {
     case invalidPort
-
-    public var errorDescription: String {
-        switch self {
-        case .invalidPort: return "Port number should be between 0 and 0xffff"
-        }
-    }
 }
 
 extension IPError: CustomStringConvertible {
     public var description: String {
-        return errorDescription
+        switch self {
+        case .invalidPort: return "Port number should be between 0 and 0xffff"
+        }
     }
 }
 

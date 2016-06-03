@@ -8,7 +8,7 @@ class IPTests: XCTestCase {
 }
 
 extension IPTests {
-    static var allTests : [(String, IPTests -> () throws -> Void)] {
+    static var allTests : [(String, (IPTests) -> () throws -> Void)] {
         return [
            ("testReality", testReality),
         ]

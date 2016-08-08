@@ -26,11 +26,11 @@ import CLibvenice
 @_exported import Venice
 @_exported import POSIX
 
-public enum IPError: ErrorProtocol {
+public enum IPError : Error {
     case invalidPort
 }
 
-extension IPError: CustomStringConvertible {
+extension IPError : CustomStringConvertible {
     public var description: String {
         switch self {
         case .invalidPort: return "Port number should be between 0 and 0xffff"
@@ -89,7 +89,7 @@ public struct IP {
     }
 }
 
-extension IP: CustomStringConvertible {
+extension IP : CustomStringConvertible {
     public var description: String {
         var buffer = [Int8](repeating: 0, count: 46)
         ipaddrstr(address, &buffer)

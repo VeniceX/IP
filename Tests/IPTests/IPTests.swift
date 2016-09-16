@@ -1,7 +1,7 @@
 import XCTest
 @testable import IP
 
-class IPTests : XCTestCase {
+public class IPTests : XCTestCase {
     func testErrorDescription() {
         XCTAssertEqual(String(describing: IPError.invalidPort), "Port number should be between 0 and 0xffff")
     }
@@ -105,7 +105,7 @@ class IPTests : XCTestCase {
 }
 
 extension IPTests {
-    static var allTests : [(String, (IPTests) -> () throws -> Void)] {
+    public static var allTests: [(String, (IPTests) -> () throws -> Void)] {
         return [
             ("testErrorDescription", testErrorDescription),
             ("testLocalIPV4", testLocalIPV4),
